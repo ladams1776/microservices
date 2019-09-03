@@ -6,9 +6,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.constraints.Past;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,7 +21,7 @@ public class UserResource {
         private String firstName;
         private String lastName;
         @Past
-        @ApiModelProperty(notes="Birth date should be in the past")
+        @ApiModelProperty(notes = "Birth date should be in the past")
         private Date birthDate;
 
         public User(String firstName, String lastName, Date birthDate) {
