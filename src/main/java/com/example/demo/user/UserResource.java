@@ -20,6 +20,7 @@ public class UserResource {
 
         private String firstName;
         private String lastName;
+
         @Past
         @ApiModelProperty(notes = "Birth date should be in the past")
         private Date birthDate;
