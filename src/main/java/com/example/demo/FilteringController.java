@@ -19,5 +19,6 @@ public class FilteringController {
                 new SomeBean("value1", "value2", "value2"),
                 new SomeBean("value2", "value3", "value4")
         );
+        
     }
 }
