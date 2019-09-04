@@ -1,13 +1,11 @@
 package com.example.demo;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@JsonIgnoreProperties(value={"field1", "field2"})
 public class SomeBean {
     private String field1;
     private String field2;
-
-    // let's say this field is some sort of password field or something
-    @JsonIgnore
     private String field3;
 
     public SomeBean(String field1, String field2, String field3) {
