@@ -15,7 +15,7 @@ public class UserResource {
         final int[] i = {1};
         final List<User> some = Stream.generate(() -> {
             i[0] += 1;
-            return new User(String.valueOf(i[0]), "adams", new Date());
+            return new User("adams", new Date());
         })
                 .limit(5)
                 .collect(Collectors.toList());

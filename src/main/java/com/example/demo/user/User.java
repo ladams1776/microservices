@@ -19,34 +19,31 @@ public class User {
 
     @Size(min=2, message="Name should have atleast 2 characters")
     @ApiModelProperty(notes="Name should have atleast 2 characters")
-    private String firstName;
-
-    private String lastName;
+    private String name;
 
     @Past
     @ApiModelProperty(notes = "Birth date should be in the past")
     private Date birthDate;
 
-    public User(String firstName, String lastName, Date birthDate) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public User(@Size(min = 2, message = "Name should have atleast 2 characters") String name, @Past Date birthDate) {
+        this.name = name;
         this.birthDate = birthDate;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public Integer getId() {
+        return id;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getName() {
+        return name;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Date getBirthDate() {
