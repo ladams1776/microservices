@@ -25,6 +25,9 @@ public class User {
     @ApiModelProperty(notes = "Birth date should be in the past")
     private Date birthDate;
 
+    public User() {
+    }
+
     public User(@Size(min = 2, message = "Name should have atleast 2 characters") String name, @Past Date birthDate) {
         this.name = name;
         this.birthDate = birthDate;

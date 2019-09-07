@@ -9,17 +9,15 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @RestController
-public class UserResource {
+public class UserJPAResource {
+    private UserRepository userRepository;
 
-    @RequestMapping(path = "/getUsers")
+    public UserJPAResource(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    @RequestMapping(path = "/jpa/users")
     public List<User> retrieveAllUsers() {
-        final int[] i = {1};
-        final List<User> some = Stream.generate(() -> {
-            i[0] += 1;
-            return new User("adams", new Date());
-        })
-                .limit(5)
-                .collect(Collectors.toList());
-        return some;
+        return userRepository.findAll();
     }
 }
