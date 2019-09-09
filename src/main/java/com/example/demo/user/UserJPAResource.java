@@ -1,6 +1,7 @@
 package com.example.demo.user;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -44,5 +45,16 @@ public class UserJPAResource {
     @PostMapping(path="/jpa/users")
     public User createUser(@Valid @RequestBody User user) {
         return this.userRepository.save(user);
+    }
+
+    @GetMapping("/jpa/users/{id}/posts")
+    public List<Post> retrieveAllUsers(@PathVariable int id) throws Exception {
+        final Optional<User> user = userRepository.findById(id);
+
+        if(!user.isPresent()) {
+            throw new Exception("id-"  + id);
+        }
+
+        return user.get().getPosts();
     }
 }
