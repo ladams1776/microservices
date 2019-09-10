@@ -18,9 +18,11 @@ import java.util.stream.Stream;
 @RestController
 public class UserJPAResource {
     private UserRepository userRepository;
+    private PostRepository postRepository;
 
-    public UserJPAResource(UserRepository userRepository) {
+    public UserJPAResource(UserRepository userRepository, PostRepository postRepository) {
         this.userRepository = userRepository;
+        this.postRepository = postRepository;
     }
 
     @RequestMapping(path = "/jpa/users")
@@ -54,7 +56,19 @@ public class UserJPAResource {
         if(!user.isPresent()) {
             throw new Exception("id-"  + id);
         }
-
         return user.get().getPosts();
+    }
+
+    @PostMapping("jpa/users/{id}/posts")
+    public Post createPost(@PathVariable int id, @RequestBody Post post) throws Exception {
+        final Optional<User> userOption = userRepository.findById(id);
+
+        if(!userOption.isPresent()) {
+            throw new Exception("id- " + id);
+        }
+
+        final User user = userOption.get();
+        post.setUser(user);
+        return postRepository.save(post);
     }
 }
